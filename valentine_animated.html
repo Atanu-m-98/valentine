@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Bubu ❤️</title>
+<style>
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+font-family:'Segoe UI',sans-serif;
+color:white;
+text-align:center;
+}
+.card{
+position:relative;
+background:rgba(255,255,255,0.15);
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+backdrop-filter: blur(12px);
+max-width:600px;
+z-index:2;
+}
+h1{font-size:40px;margin-bottom:20px;}
+p{font-size:22px;line-height:1.6;}
+img{
+margin-top:25px;
+width:100%;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+.heart{
+position:absolute;
+bottom:-50px;
+font-size:24px;
+animation:float 8s linear infinite;
+opacity:0.7;
+}
+@keyframes float{
+0%{transform:translateY(0) scale(1);opacity:0;}
+10%{opacity:0.7;}
+100%{transform:translateY(-110vh) scale(1.5);opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>Happy Valentine’s Day, Bubu ❤️</h1>
+<p>
+I don’t say this enough, but being with you is amazing.<br>
+I love every second of it, including the moments when I cry a lot.<br>
+Thank you for choosing me.
+</p>
+<img src="IMG20250929110544.jpg">
+</div>
+
+<script>
+function createHeart(){
+const heart=document.createElement("div");
+heart.className="heart";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(5+Math.random()*5)+"s";
+heart.innerHTML="❤";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove()},9000);
+}
+setInterval(createHeart,500);
+</script>
+
+</body>
+</html>
