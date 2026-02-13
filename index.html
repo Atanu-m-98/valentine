@@ -4,40 +4,96 @@
 <meta charset="UTF-8">
 <title>For Bubu ❤️</title>
 <style>
+
 body{
 margin:0;
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
 background:linear-gradient(135deg,#ff758c,#ff7eb3);
 font-family:'Segoe UI',sans-serif;
 color:white;
 text-align:center;
-padding:20px;
 overflow-x:hidden;
 }
 
-.card{
+/* Glitter Title */
+.glitter{
+font-size:38px;
+background:linear-gradient(90deg,#fff,#ffd700,#fff);
+background-size:200% auto;
+color:transparent;
+background-clip:text;
+-webkit-background-clip:text;
+animation:shine 3s linear infinite;
+}
+
+@keyframes shine{
+to{background-position:200% center;}
+}
+
+/* Envelope Screen */
+#cover{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff4e8a,#ff9ac6);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:10;
+cursor:pointer;
+}
+
+.envelope{
+width:200px;
+height:130px;
+background:white;
 position:relative;
+border-radius:10px;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+.envelope:before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:0;
+height:0;
+border-left:100px solid transparent;
+border-right:100px solid transparent;
+border-bottom:65px solid #ff758c;
+}
+
+#cover h2{
+margin-top:20px;
+}
+
+/* Card */
+.card{
 background:rgba(255,255,255,0.15);
 padding:40px;
 border-radius:25px;
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
 backdrop-filter: blur(12px);
 max-width:600px;
-width:100%;
-z-index:2;
+margin:120px auto 60px;
+display:none;
 }
 
-h1{
-font-size:36px;
-margin-bottom:20px;
+/* Rose petals */
+.petal{
+position:fixed;
+top:-50px;
+font-size:22px;
+animation:fall linear infinite;
+pointer-events:none;
 }
 
-p{
-font-size:20px;
-line-height:1.6;
+@keyframes fall{
+0%{transform:translateY(0) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
 }
 
 img{
@@ -47,44 +103,56 @@ border-radius:15px;
 box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
-.heart{
-position:fixed;
-bottom:-50px;
-font-size:24px;
-animation:float 8s linear infinite;
-opacity:0.7;
-}
-
-@keyframes float{
-0%{transform:translateY(0) scale(1);opacity:0;}
-10%{opacity:0.7;}
-100%{transform:translateY(-110vh) scale(1.5);opacity:0;}
-}
 </style>
 </head>
 <body>
 
-<div class="card">
-<h1>Happy Valentine’s Day, Bubu ❤️</h1>
+<!-- Cover -->
+<div id="cover" onclick="openLetter()">
+<div class="envelope"></div>
+<h2>Click to Open 💌</h2>
+</div>
+
+<!-- Love Letter -->
+<div class="card" id="letter">
+<h1 class="glitter">Happy Valentine’s Day, Bubu ❤️</h1>
 <p>
-I don’t say this enough, but being with you is amazing.<br>
-I love every second of it, including the moments when I cry a lot.<br>
-Thank you for choosing me.
+I don’t say this enough, but being with you is amazing.<br><br>
+I love every second of it, even the emotional ones.<br><br>
+Thank you for choosing me.<br><br>
+You are my favorite person in the world.
 </p>
 <img src="IMG20250929110544.jpg">
 </div>
 
+<!-- Music -->
+<audio id="music" loop>
+<source src="love.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-function createHeart(){
-const heart=document.createElement("div");
-heart.className="heart";
-heart.style.left=Math.random()*100+"vw";
-heart.style.animationDuration=(5+Math.random()*5)+"s";
-heart.innerHTML="❤";
-document.body.appendChild(heart);
-setTimeout(()=>{heart.remove()},9000);
+
+function openLetter(){
+document.getElementById("cover").style.display="none";
+document.getElementById("letter").style.display="block";
+document.getElementById("music").play();
+startPetals();
 }
-setInterval(createHeart,500);
+
+function startPetals(){
+setInterval(createPetal,400);
+}
+
+function createPetal(){
+const petal=document.createElement("div");
+petal.className="petal";
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=(5+Math.random()*5)+"s";
+petal.innerHTML="🌹";
+document.body.appendChild(petal);
+setTimeout(()=>{petal.remove()},10000);
+}
+
 </script>
 
 </body>
